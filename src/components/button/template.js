@@ -57,7 +57,7 @@ button:active {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0,#E5F4FC), color-stop(0.5,#C4E5F6),color-stop(0.51,#98D1EF),color-stop(1,#68B3DB));
 }
 </style>
-<button id="wo-button">
+<button id="wo-button"></button>
 </div>
 `
 

@@ -15,15 +15,6 @@ template.innerHTML = `
     .user-card img {
         width: 100%;
     }
-
-    .user-card button {
-        cursor: pointer;
-        background: darkorchid;
-        color: #fff;
-        border: 0;
-        border-radius: 5px;
-        padding: 5px 10px;
-    }
   </style>
   <div class="user-card">
     <img />
@@ -33,7 +24,7 @@ template.innerHTML = `
         <p><slot name="email"/></p>
         <p><slot name="phone" /></p>
       </div>
-      <button id="toggle-info">Hide Info</button>
+      <wo-btn id="toggle-info">Hide Info</wo-btn>
     </div>
   </div>
 `
