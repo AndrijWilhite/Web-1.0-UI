@@ -11,7 +11,7 @@
         </style>
     </head>
     <body>
-        <h3>Hello World</h3>
+        <h3>User Cards</h3>
         <div>
             <user-card name="Andrij Wilhite" avatar="https://randomuser.me/api/portraits/men/2.jpg">
                 <div slot="email">danjTAnj@gmail.com</div>
@@ -21,6 +21,24 @@
                 <div slot="email">KAj@gmail.com</div>
                 <div slot="phone">666</div>
             </user-card>
+            <h3>Buttons</h3>
+            <div>
+            <script type="text/javascript">
+                function testFunc(){
+                    alert('btn worked')
+                }
+            </script>
+            <wo-btn></wo-btn>
+            <!-- <wo-btn txt="Hello" type="primary" test="testFunc()" onClick="testFunc()"></wo-btn> -->
+            <wo-btn txt="Hello" size="s" type="primary" test="testFunc" ></wo-btn>
+            <wo-btn txt="Hello" size="m" type="primary" test="testFunc" ></wo-btn>
+            <wo-btn txt="Hello" size="lrg" type="primary" test="testFunc" ></wo-btn>
+            <wo-btn txt="Hello" size="xl" type="primary" test="testFunc" ></wo-btn>
+
+
+            </div>
+
+            <!-- <wo-btn txt="HI"/> -->
         </div>
         <script type="module" src="src/index.js"></script>
     </body>
