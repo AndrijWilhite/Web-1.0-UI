@@ -1,7 +1,6 @@
 const template = document.createElement('template')
 
 template.innerHTML = `
-
 <style>
 button[size="s"] {
     width: 50px;
