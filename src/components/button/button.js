@@ -12,6 +12,7 @@ export class Button extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.shadowRoot.querySelector('button').innerText = this.innerHTML || this.getAttribute('txt') || 'Submit'
+    // this.shadowRoot.removeEventListener('hover')
     console.log(this.innerHTML)
 
     // this.shadowRoot.querySelector('button').setAttribute('type', this.getAttribute('type'))
