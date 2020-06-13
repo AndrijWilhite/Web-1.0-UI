@@ -17,7 +17,6 @@ export class List extends HTMLElement {
     const listType = this.getAttribute('type') || 'ul'
 
     if (this.getAttribute('type') == 'ol') {
-      console.log('TYPE: ' + this.getAttribute('type'))
       this.shadowRoot.querySelector('#wo-list').innerHTML = '<ol></ol>'
     } else {
       this.shadowRoot.querySelector('#wo-list').innerHTML = '<ul></ul>'
