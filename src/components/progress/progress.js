@@ -13,11 +13,12 @@ export class Progress extends HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
-    // this.shadowRoot.querySelector('button').innerText = this.innerHTML || this.getAttribute('txt') || 'Submit'
-    // this.shadowRoot.querySelector('button').setAttribute('size', this.getAttribute('size'))
+    this.shadowRoot.querySelector('progress').setAttribute('value', this.getAttribute('value'))
+    this.shadowRoot.querySelector('progress').setAttribute('max', this.getAttribute('max'))
+    this.shadowRoot.querySelector('h4').innerText = this.getAttribute('title')
 
-    this.shadowRoot.querySelector('progress').setAttribute('value', this.getAttribute('value') )
-    this.shadowRoot.querySelector('progress').setAttribute('max', this.getAttribute('max') )
-
+    if (this.getAttribute('showPercent')) {
+      this.shadowRoot.querySelector('#textDisplay').innerText = this.getAttribute('value') + ' / ' + this.getAttribute('max')
+    }
   }
 }
