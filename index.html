@@ -36,7 +36,12 @@
             </div>
             <h3>UL</h3>
             <div>
-                <wo-ul title="List Title" items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-ul>
+                <h4>No Title</h4>
+                <wo-list items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
+                <wo-list title="Basic" items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
+                <wo-list title="Text Color and Bullet Type" type='ul' bullet='square' color='red' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
+                <wo-list title="Changing the List to an OL" type='ol' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
+
             </div>
         </div>
         <script type="module" src="src/index.js"></script>

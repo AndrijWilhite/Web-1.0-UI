@@ -5,8 +5,8 @@ template.innerHTML = `
 </style>
 <div>
 <h4>/></h4>
-<ul id="wo-ul">
-</ul>
+<div id="wo-list">
+</div>
 </div>
 `
 
