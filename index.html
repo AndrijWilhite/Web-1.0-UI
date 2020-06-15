@@ -29,10 +29,18 @@
                 }
             </script>
             <wo-btn onClick="testFunc()"></wo-btn><br />
-            <wo-btn txt="Hello" size="s" onClick="testFunc()" >Small</wo-btn> <br />
-            <wo-btn txt="Hello" size="m" onClick="testFunc()" >Medium</wo-btn><br />
-            <wo-btn txt="Hello" size="lrg" onClick="testFunc()" >Large</wo-btn><br />
-            <wo-btn txt="Hello" size="xl" onClick="testFunc()" >Extra Large</wo-btn><br />
+            <wo-btn size="s" onClick="testFunc()" >Small</wo-btn> <br />
+            <wo-btn size="m" onClick="testFunc()" >Medium</wo-btn><br />
+            <wo-btn size="lrg" onClick="testFunc()" >Large</wo-btn><br />
+            <wo-btn size="xl" onClick="testFunc()" >Extra Large</wo-btn><br />
+            <h4>Example:</h4>
+            <wo-code>
+                <wo-btn onClick="testFunc()"></wo-btn><br />
+                <wo-btn size="s" onClick="testFunc()" >Small</wo-btn> <br />
+                <wo-btn size="m" onClick="testFunc()" >Medium</wo-btn><br />
+                <wo-btn size="lrg" onClick="testFunc()" >Large</wo-btn><br />
+                <wo-btn size="xl" onClick="testFunc()" >Extra Large</wo-btn><br />
+            </wo-code>
             </div>
             <h3>Lists</h3>
             <div>
@@ -41,19 +49,23 @@
                 <wo-list title="Basic" items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
                 <wo-list title="Text Color and Bullet Type" type='ul' bullet='square' color='red' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
                 <wo-list title="Changing the List to an OL" type='ol' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
-            </div>
-            <!-- <pre>
-                <code>
-                    <wo-list items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' >&lt/wo-list>
+                <h4>Example:</h4>
+                <wo-code>
+                    <wo-list items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
                     <wo-list title="Basic" items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
                     <wo-list title="Text Color and Bullet Type" type='ul' bullet='square' color='red' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
                     <wo-list title="Changing the List to an OL" type='ol' items='[{"data": "Rank"}, {"data": "Bank"}, {"data": "Stank"}]' ></wo-list>
-                </code>
-            </pre>  -->
+                </wo-code>
+            </div>
             <div>
                 <h3>Progress Bars</h3>
                 <wo-progress id="file" title="A Simple Bar" value="69" max="100"> '32%' </wo-progress>
                 <wo-progress id="file" title="With Percentage Underneath" showPercent=true value="32" max="100"></wo-progress>
+                <h4>Example:</h4>
+                <wo-code>
+                    <wo-progress id="file" title="A Simple Bar" value="69" max="100"> '32%' </wo-progress>
+                    <wo-progress id="file" title="With Percentage Underneath" showPercent=true value="32" max="100"></wo-progress>
+                </wo-code>
             </div>
             <div>
                 <h3>Code</h3>
