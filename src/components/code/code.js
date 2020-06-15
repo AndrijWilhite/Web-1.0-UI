@@ -12,6 +12,5 @@ export class Code extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
 
     this.shadowRoot.querySelector('code').innerHTML = this.innerHTML.replace(/</g,'&lt')
-
   }
 }

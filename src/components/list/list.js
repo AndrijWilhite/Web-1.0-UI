@@ -29,6 +29,7 @@ export class List extends HTMLElement {
     var items = this.getAttribute('items')
     if (!Array.isArray(items)) {
       JSON.parse(items).forEach(item => {
+        console.log(item.data)
         this.shadowRoot.querySelector(listType).innerHTML += '<li>' + item.data + '</li>'
       })
     } else {
