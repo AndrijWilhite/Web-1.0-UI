@@ -9,7 +9,6 @@ template.innerHTML = `
   align-items: center;
   justify-content: center;
 }
-
 .marq:hover {
   animation-play-state: paused;
 }
