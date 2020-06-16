@@ -5,7 +5,7 @@ import { Progress } from './components/progress/progress.js'
 import { Form } from './components/form/form.js'
 import { Code } from './components/code/code.js'
 import { Big } from './components/big/big.js'
-
+import { TeleType } from './components/tt/tt.js'
 
 window.customElements.define('user-card', UserCard)
 window.customElements.define('wo-btn', Button)
@@ -14,4 +14,6 @@ window.customElements.define('wo-progress', Progress)
 window.customElements.define('wo-form', Form)
 window.customElements.define('wo-code', Code)
 window.customElements.define('wo-big', Big)
+window.customElements.define('wo-tt', TeleType)
+
 
