@@ -1,9 +1,11 @@
 import template from './template.js'
 
 /**
- *@info display HTML
- *@TODO ensure other code types, add param for adding different line colors
- *@param title : adds a title to the code snippet
+ * @param width: determines marquee width
+ * @param height: determines marquee height
+ * @param speed: speed in secoonds that the text moves
+ * @param bColor: sets the background color
+ * @param tColor: sets the text color
  */
 
 export class Marquee extends HTMLElement {
@@ -12,9 +14,21 @@ export class Marquee extends HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
-    console.log(this.innerHTML)
-    console.log(this.shadowRoot.querySelectorAll('.rightTI'))
-
     this.shadowRoot.querySelector('div').innerHTML = this.innerHTML
+
+
+    this.shadowRoot.querySelector('style').innerText += 'div {width: ' + this.getAttribute('width') + 'px;}'
+    this.shadowRoot.querySelector('style').innerText += 'div {height: ' + this.getAttribute('height') + 'px;}'
+
+    if (this.getAttribute('speed')) {
+      this.shadowRoot.querySelector('style').innerText += '.marq {animation: marquee ' + this.getAttribute('speed') + 's linear infinite}'
+    } else {
+      this.shadowRoot.querySelector('style').innerText += '.marq {animation: marquee 10s linear infinite;}'
+    }
+
+    this.shadowRoot.querySelector('style').innerText += '.marq {background: ' + this.getAttribute('bColor') + '}'
+    this.shadowRoot.querySelector('style').innerText += '.marq {color: ' + this.getAttribute('tColor') + '}'
+
+
   }
 }
