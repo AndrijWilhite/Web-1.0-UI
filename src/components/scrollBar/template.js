@@ -27,12 +27,18 @@ template.innerHTML = `
 #track {
     width:50px;
     height: 200px;
+    // contain: content;
+
 }
 #slider {
     width: 50px;
     height: 50px;
     background: grey;
     position: absolute;
+    // position : fixed;
+    // containment: "parent";
+    // contain: content;
+
 }
 
 
