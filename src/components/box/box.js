@@ -10,7 +10,7 @@ export class Box extends HTMLElement {
 
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.shadowRoot.querySelector('div').innerHTML = this.innerHTML
+    // this.shadowRoot.querySelector('div').innerHTML = this.innerHTML
 
     // // width and height
     // this.shadowRoot.querySelector('style').innerText += 'div {width: ' + this.getAttribute('width') + 'px;}'

@@ -8,7 +8,7 @@ template.innerHTML = `
     width: 50px;
     height: 300px;
 }
-.up-btn{
+#up-btn{
     height:50px;
     width: 50px;
     background-image: url(${downArrow});
@@ -16,7 +16,7 @@ template.innerHTML = `
     background-position: center;
     -webkit-transform:rotate(180deg);
 }
-.down-btn{
+#down-btn{
     height:50px;
     width: 50px;
     background-image: url(${downArrow});
@@ -27,29 +27,23 @@ template.innerHTML = `
 #track {
     width:50px;
     height: 200px;
-    // contain: content;
-
 }
 #slider {
     width: 50px;
     height: 50px;
     background: grey;
     position: absolute;
-    // position : fixed;
-    // containment: "parent";
-    // contain: content;
-
 }
 
 
 </style>
 <div class="scrollBar">
-    <button class='up-btn'></button>
+    <button id='up-btn'></button>
     <div id='track'>
         <div id='slider'>
         </div>
     </div>
-    <button class='down-btn'></button>
+    <button id='down-btn'></button>
 </div>
 `
 export default template
