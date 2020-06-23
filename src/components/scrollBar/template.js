@@ -6,11 +6,11 @@ template.innerHTML = `
 <style>
 .scrollBar {
     width: 50px;
-    height: 300px;
 }
 #up-btn{
     height:50px;
     width: 50px;
+    padding: 0px;
     background-image: url(${downArrow});
     background-repeat: no-repeat;
     background-position: center;
@@ -19,6 +19,7 @@ template.innerHTML = `
 #down-btn{
     height:50px;
     width: 50px;
+    padding: 0px;
     background-image: url(${downArrow});
     background-repeat: no-repeat;
     background-position: center;
@@ -26,7 +27,6 @@ template.innerHTML = `
 }
 #track {
     width:50px;
-    height: 200px;
 }
 #slider {
     width: 50px;
@@ -39,9 +39,7 @@ template.innerHTML = `
 </style>
 <div class="scrollBar">
     <button id='up-btn'></button>
-    <div id='track'>
-        <div id='slider'>
-        </div>
+    <div id='track'><div id='slider'></div>
     </div>
     <button id='down-btn'></button>
 </div>

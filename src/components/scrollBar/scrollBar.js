@@ -1,13 +1,21 @@
 import template from './template.js'
 
 /**
- *
+ * @param height : sets the height of the scroll bar
  */
 export class ScrollBar extends HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
+
+    //set the height
+    const scaleHeight = this.getAttribute('height')
+    const buttonHeight = (+getComputedStyle((this.shadowRoot.getElementById('down-btn'))).borderTopWidth.slice(0, -2) * 2) + this.shadowRoot.getElementById('down-btn').clientHeight
+    const trackHeight = scaleHeight - (buttonHeight * 2)
+    this.shadowRoot.querySelector('style').innerText += '.scrollBar {height:' + scaleHeight + 'px;}'
+    this.shadowRoot.querySelector('style').innerText += '#track {height:' + trackHeight + 'px;}'
+
 
     // slider and track logic
     var slider = this.shadowRoot.getElementById('slider')
