@@ -24,26 +24,26 @@ template.innerHTML = `
     background-position: center;
 
 }
-.track {
+#track {
     width:50px;
     height: 200px;
 }
-.slider {
+#slider {
     width: 50px;
     height: 50px;
     background: grey;
+    position: absolute;
 }
 
 
 </style>
 <div class="scrollBar">
     <button class='up-btn'></button>
-    <div class='track'>
-        <div class='slider'>
+    <div id='track'>
+        <div id='slider'>
         </div>
     </div>
     <button class='down-btn'></button>
 </div>
 `
-
 export default template
