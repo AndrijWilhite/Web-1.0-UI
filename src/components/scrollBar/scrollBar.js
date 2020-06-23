@@ -16,16 +16,13 @@ export class ScrollBar extends HTMLElement {
     this.shadowRoot.querySelector('style').innerText += '.scrollBar {height:' + scaleHeight + 'px;}'
     this.shadowRoot.querySelector('style').innerText += '#track {height:' + trackHeight + 'px;}'
 
-
     // slider and track logic
     var slider = this.shadowRoot.getElementById('slider')
     var track = this.shadowRoot.getElementById('track')
     document.mouseState = 'up'
     slider.mouseState = 'up'
     slider.lastMousePosY = null
-    slider.lastMousePosX = null
-    slider.proposedNewPosY = parseInt(slider.style.top, 10) // converts '10px' to 10
-    slider.proposedNewPosX = parseInt(slider.style.left, 10)
+    slider.proposedNewPosY = parseInt(slider.style.top, 10)
 
     slider.style.top = track.offsetTop - slider.clientTop + 'px'
     slider.style.left = track.offsetLeft - slider.clientLeft + 'px'
@@ -38,7 +35,6 @@ export class ScrollBar extends HTMLElement {
 
     slider.onmousedown = function (e) {
       slider.lastMousePosY = e.pageY
-      slider.lastMousePosX = e.pageX
       slider.mouseState = 'down'
       document.mouseState = 'down'
     }
@@ -53,7 +49,6 @@ export class ScrollBar extends HTMLElement {
     slider.onmousemove = function (e) {
       if ((document.mouseState === 'down') && (slider.mouseState === 'down')) {
         slider.proposedNewPosY = getAtInt(slider, 'top') + e.pageY - slider.lastMousePosY
-        slider.proposedNewPosX = getAtInt(slider, 'left') + e.pageX - slider.lastMousePosX
 
         if (slider.proposedNewPosY < getAtInt(track, 'top')) {
           slider.style.top = track.style.top
@@ -62,15 +57,7 @@ export class ScrollBar extends HTMLElement {
         } else {
           slider.style.top = slider.proposedNewPosY + 'px'
         }
-        if (slider.proposedNewPosX < getAtInt(track, 'left')) {
-          slider.style.left = track.style.left
-        } else if (slider.proposedNewPosX > getAtInt(track, 'left') + getAtInt(track, 'width') - getAtInt(slider, 'width')) {
-          slider.style.left = getAtInt(track, 'left') + getAtInt(track, 'width') - getAtInt(slider, 'width') + 'px'
-        } else {
-          slider.style.left = slider.proposedNewPosX + 'px'
-        }
         slider.lastMousePosY = e.pageY
-        slider.lastMousePosX = e.pageX
       }
     }
 
