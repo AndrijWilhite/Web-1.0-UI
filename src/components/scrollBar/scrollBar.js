@@ -71,6 +71,8 @@ export class ScrollBar extends HTMLElement {
     }
     this.shadowRoot.getElementById('down-btn').onclick = () => {
       slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
+      let height = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
+      this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
     }
   }
   connectedCallback () {
