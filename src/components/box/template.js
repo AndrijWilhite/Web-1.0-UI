@@ -24,19 +24,17 @@ template.innerHTML = `
 #box {
     background-color: #C0C0C0;
     width: 300px;
-    height: 300px;
+    height: 500px;
     border: 1px solid black;
-    overflow:hidden;
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
     border-left-width: 1px;
     display: inline-block;
     margin-right: -4px;
+    overflow-x: scroll;
+
 }
-
-
-
 .container {
     width: 400px;
     height: 400px;

@@ -4,21 +4,22 @@ let downArrow = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 
 template.innerHTML = `
 <style>
-.scrollBar {
-    width: 50px;
+#scrollBar {
+    width: 45px;
 }
 #up-btn{
-    height:50px;
-    width: 50px;
+    height:45px;
+    width: 45px;
     padding: 0px;
     background-image: url(${downArrow});
     background-repeat: no-repeat;
     background-position: center;
     -webkit-transform:rotate(180deg);
+    // margin-top: -4px;
 }
 #down-btn{
-    height:50px;
-    width: 50px;
+    height:45px;
+    width: 45px;
     padding: 0px;
     background-image: url(${downArrow});
     background-repeat: no-repeat;
@@ -26,21 +27,19 @@ template.innerHTML = `
 
 }
 #track {
-    width:50px;
+    width:45px;
+    // margin-top: -2px;
 }
 #slider {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background: grey;
     position: absolute;
 }
-
-
 </style>
-<div class="scrollBar">
+<div id="scrollBar">
     <button id='up-btn'></button>
-    <div id='track'><div id='slider'></div>
-    </div>
+    <div id='track'><div id='slider'></div></div>
     <button id='down-btn'></button>
 </div>
 `

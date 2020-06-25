@@ -11,13 +11,19 @@ export class Box extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template.content.cloneNode(true))
 
-    console.log(this.getAttribute('scrollable'))
-    console.log(this.shadowRoot.getElementById('box').clientHeight)
-
     if (this.getAttribute('scrollable') === 'true') {
-      this.shadowRoot.getElementById('container').innerHTML += '<wo-scrollBar id="scroll" height=' + this.shadowRoot.getElementById('box').clientHeight + '></wo-scrollBar>'
+      let height = +getComputedStyle((this.shadowRoot.getElementById('box'))).borderTopWidth.slice(0, -2) * 2 + this.shadowRoot.getElementById('box').clientHeight
+      this.shadowRoot.getElementById('container').innerHTML += '<wo-scrollBar id="scroll" height=' + height + '></wo-scrollBar>'
       this.shadowRoot.querySelector('style').innerText += 'wo-scrollBar {display: inline-block;}'
     }
-
+  }
+  connectedCallback () {
+    // this.shadowRoot.getElementById('up-btn').onclick(() => {
+    //   this.shadowRoot.getElementById('box').scrollTop = 0
+    // })
+    // this.shadowRoot.getElementById('box').scrollTop = 1000
+    // let a = this.shadowRoot.getElementById('up-btn')
+    // let a = this.shadowRoot.hasChildNodes()
+    // console.log(a)
   }
 }
