@@ -35,6 +35,11 @@ export class ScrollBar extends HTMLElement {
     track.style.height = track.clientHeight + 'px'
     track.style.width = track.clientWidth + 'px'
 
+    // console.log('slider pos: ', parseInt(slider.style.top, 10))
+    const startPos = parseInt(track.style.top, 10)
+    console.log('start: ', startPos)
+    var root = this.shadowRoot
+
     slider.onmousedown = function (e) {
       slider.lastMousePosY = e.pageY
       slider.mouseState = 'down'
@@ -57,36 +62,72 @@ export class ScrollBar extends HTMLElement {
         } else if (slider.proposedNewPosY > getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height')) {
           slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
         } else {
+          console.log('******************')
+
+          let curr = parseInt(slider.style.top, 10)
+          let start = startPos
+          let max = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height')
+          let diff = max - start
+          let avg = (start + max) / 2
+        //   // console.log(getAtInt(track, 'top') + getAtInt(track, 'height'))
+        //   console.log('start pos:', startPos)
+        //   console.log('max pos: ', max)
+        //   console.log('slider pos: ', curr)
+        //   console.log('test: ', start + getAtInt(slider, 'height'))
+
+        // //   console.log(max - start - getAtInt(slider, 'height'))
+        // console.log(max - start)
+
+        //   //   console.log('diff: ', diff)
+        //   //   console.log('avg: ', avg)
+        //   //   console.log(curr / (max-start))
+
+          var parentPos = root.getElementById('track').getBoundingClientRect()
+
+          var childPos = root.getElementById('slider').getBoundingClientRect()
+
+          let x = childPos.top - parentPos.top
+          let y = max - start
+
+          console.log( (x/y)*100 )
+
           slider.style.top = slider.proposedNewPosY + 'px'
         }
         slider.lastMousePosY = e.pageY
       }
     }
+    // var parentPos = this.shadowRoot.getElementById('track').getBoundingClientRect()
+
+    // var childPos = this.shadowRoot.getElementById('slider').getBoundingClientRect()
+
+    // var relativePos = {}
+
+    // relativePos.top = childPos.top - parentPos.top,
+    // relativePos.right = childPos.right - parentPos.right,
+    // relativePos.bottom = childPos.bottom - parentPos.bottom,
+    // relativePos.left = childPos.left - parentPos.left
+
+    // console.log(relativePos)
+
 
     // up and down button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
       slider.style.top = track.offsetTop - slider.clientTop + 'px'
       this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 0
-
     }
     this.shadowRoot.getElementById('down-btn').onclick = () => {
       slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
       let height = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
+      console.log(height)
       this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
     }
+
+    // box view position logic
+    // let boxHeight = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
+    // let a = slider.proposedNewPosY
+    // console.log('A', a)
   }
   connectedCallback () {
-    //   let a = this.shadowRoot.getElementById('scrollBar').getRootNode().host
-    // let a = this.shadowRoot.parentElement
-    // let a = this.shadowRoot.getRootNode().
-    // let a = this.shadowRoot.closest('wo-box')
-    // let a = this.shadowRoot.getElementById('scrollBar').getRootNode.host
 
-    // this.shadowRoot.getElementById('up-btn').onclick(() => {
-    // //   this.shadowRoot.getElementById('box').scrollTop = 0
-    // //   this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 0
-    // })
-    // let a = this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 2000
-    // console.log(a)
   }
 }
