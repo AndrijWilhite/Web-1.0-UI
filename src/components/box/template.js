@@ -32,17 +32,14 @@ template.innerHTML = `
     border-left-width: 1px;
     display: inline-block;
     margin-right: -4px;
-    overflow-x: scroll;
-
+    overflow: hidden;
 }
 .container {
     width: 400px;
     height: 400px;
     display: flex;
-    /* important */
     align-items: stretch;
 }
-
 </style>
 <div id="container">
 <div id="box">${lorem}</div>

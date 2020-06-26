@@ -15,7 +15,6 @@ template.innerHTML = `
     background-repeat: no-repeat;
     background-position: center;
     -webkit-transform:rotate(180deg);
-    // margin-top: -4px;
 }
 #down-btn{
     height:45px;
@@ -28,7 +27,6 @@ template.innerHTML = `
 }
 #track {
     width:45px;
-    // margin-top: -2px;
 }
 #slider {
     width: 45px;
