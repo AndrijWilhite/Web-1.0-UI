@@ -13,16 +13,18 @@ export class ScrollBar extends HTMLElement {
     // set the height
     const scaleHeight = this.getAttribute('height')
     const buttonHeight = (+getComputedStyle((this.shadowRoot.getElementById('down-btn'))).borderTopWidth.slice(0, -2) * 2) + this.shadowRoot.getElementById('down-btn').clientHeight
-    const trackHeight = scaleHeight - (buttonHeight * 2)
-
     this.shadowRoot.querySelector('style').innerText += '.scrollBar {height:' + scaleHeight + 'px;}'
-    this.shadowRoot.querySelector('style').innerText += '#track {height:' + trackHeight + 'px;}'
+    this.shadowRoot.querySelector('style').innerText += '#track {height:' + (scaleHeight - (buttonHeight * 2)) + 'px;}'
 
-    // slider and track logic
+    // declarations
+    const root = this
+    const height = root.getRootNode().host.shadowRoot.getElementById('box').scrollHeight - root.getRootNode().host.shadowRoot.getElementById('box').clientHeight
     var slider = this.shadowRoot.getElementById('slider')
     var track = this.shadowRoot.getElementById('track')
-    document.mouseState = 'up'
-    slider.mouseState = 'up'
+    let max = track.offsetTop + track.clientHeight - slider.clientHeight
+
+    document.mouseState = 1
+    slider.mouseState = 1
     slider.lastMousePosY = null
     slider.proposedNewPosY = parseInt(slider.style.top, 10)
 
@@ -35,86 +37,39 @@ export class ScrollBar extends HTMLElement {
     track.style.height = track.clientHeight + 'px'
     track.style.width = track.clientWidth + 'px'
 
-    // console.log('slider pos: ', parseInt(slider.style.top, 10))
-    const startPos = parseInt(track.style.top, 10)
-    console.log('start: ', startPos)
-    var root = this
+    var getAtInt = function (obj, attr) {
+      return parseInt(obj.style[attr], 10)
+    }
+    var calcPercentage = function () {
+      return ((root.shadowRoot.getElementById('slider').getBoundingClientRect().top - root.shadowRoot.getElementById('track').getBoundingClientRect().top) / (max - track.offsetTop)).toFixed(2)
+    }
 
+    // slider and track logic
     slider.onmousedown = function (e) {
       slider.lastMousePosY = e.pageY
-      slider.mouseState = 'down'
-      document.mouseState = 'down'
+      slider.mouseState = 0
+      document.mouseState = 0
     }
 
     slider.onmouseup = function (e) {
-      slider.mouseState = 'up'
-      document.mouseState = 'up'
+      slider.mouseState = 1
+      document.mouseState = 1
     }
-    var getAtInt = function getAtInt (obj, attr) {
-      return parseInt(obj.style[attr], 10)
-    }
-    slider.onmousemove = function (e) {
-      if ((document.mouseState === 'down') && (slider.mouseState === 'down')) {
-        slider.proposedNewPosY = getAtInt(slider, 'top') + e.pageY - slider.lastMousePosY
 
+    slider.onmousemove = function (e) {
+      if ((document.mouseState === 0) && (slider.mouseState === 0)) {
+        slider.proposedNewPosY = getAtInt(slider, 'top') + e.pageY - slider.lastMousePosY
         if (slider.proposedNewPosY < getAtInt(track, 'top')) {
           slider.style.top = track.style.top
-        } else if (slider.proposedNewPosY > getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height')) {
-          slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
+        } else if (slider.proposedNewPosY > max) {
+          slider.style.top = max + 'px'
         } else {
-          console.log('******************')
-
-          let curr = parseInt(slider.style.top, 10)
-          let start = startPos
-          let max = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height')
-          let diff = max - start
-          let avg = (start + max) / 2
-          //   // console.log(getAtInt(track, 'top') + getAtInt(track, 'height'))
-          //   console.log('start pos:', startPos)
-          //   console.log('max pos: ', max)
-          //   console.log('slider pos: ', curr)
-          //   console.log('test: ', start + getAtInt(slider, 'height'))
-
-          // //   console.log(max - start - getAtInt(slider, 'height'))
-          // console.log(max - start)
-
-          //   //   console.log('diff: ', diff)
-          //   //   console.log('avg: ', avg)
-          //   //   console.log(curr / (max-start))
-          let height = root.getRootNode().host.shadowRoot.getElementById('box').scrollHeight - root.getRootNode().host.shadowRoot.getElementById('box').clientHeight
-        //   console.log(height)
-
-          var parentPos = root.shadowRoot.getElementById('track').getBoundingClientRect()
-
-          var childPos = root.shadowRoot.getElementById('slider').getBoundingClientRect()
-
-          let x = childPos.top - parentPos.top
-          let y = max - start
-          let percentage = (x / y).toFixed(2)
-          console.log('height: ', height)
-          console.log('percent: ', percentage)
-          console.log('scrollView: ', height * percentage )
-
-          //   console.log( (x/y)*100 )
-
           slider.style.top = slider.proposedNewPosY + 'px'
-          root.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height * percentage
+          root.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height * calcPercentage()
         }
         slider.lastMousePosY = e.pageY
       }
     }
-    // var parentPos = this.shadowRoot.getElementById('track').getBoundingClientRect()
-
-    // var childPos = this.shadowRoot.getElementById('slider').getBoundingClientRect()
-
-    // var relativePos = {}
-
-    // relativePos.top = childPos.top - parentPos.top,
-    // relativePos.right = childPos.right - parentPos.right,
-    // relativePos.bottom = childPos.bottom - parentPos.bottom,
-    // relativePos.left = childPos.left - parentPos.left
-
-    // console.log(relativePos)
 
     // up and down button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
@@ -122,20 +77,8 @@ export class ScrollBar extends HTMLElement {
       this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 0
     }
     this.shadowRoot.getElementById('down-btn').onclick = () => {
-      slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
-      let height = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
-    //   console.log(height)
-    //   this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
-    this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 2400
-
+      slider.style.top = track.offsetTop + track.clientHeight - slider.clientHeight + 'px'
+      this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
     }
-
-    // box view position logic
-    // let boxHeight = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
-    // let a = slider.proposedNewPosY
-    // console.log('A', a)
-  }
-  connectedCallback () {
-
   }
 }

@@ -17,7 +17,4 @@ export class Box extends HTMLElement {
       this.shadowRoot.querySelector('style').innerText += 'wo-scrollBar {display: inline-block;}'
     }
   }
-  connectedCallback () {
-
-  }
 }
