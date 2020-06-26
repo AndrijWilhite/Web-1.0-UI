@@ -38,7 +38,7 @@ export class ScrollBar extends HTMLElement {
     // console.log('slider pos: ', parseInt(slider.style.top, 10))
     const startPos = parseInt(track.style.top, 10)
     console.log('start: ', startPos)
-    var root = this.shadowRoot
+    var root = this
 
     slider.onmousedown = function (e) {
       slider.lastMousePosY = e.pageY
@@ -69,29 +69,36 @@ export class ScrollBar extends HTMLElement {
           let max = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height')
           let diff = max - start
           let avg = (start + max) / 2
-        //   // console.log(getAtInt(track, 'top') + getAtInt(track, 'height'))
-        //   console.log('start pos:', startPos)
-        //   console.log('max pos: ', max)
-        //   console.log('slider pos: ', curr)
-        //   console.log('test: ', start + getAtInt(slider, 'height'))
+          //   // console.log(getAtInt(track, 'top') + getAtInt(track, 'height'))
+          //   console.log('start pos:', startPos)
+          //   console.log('max pos: ', max)
+          //   console.log('slider pos: ', curr)
+          //   console.log('test: ', start + getAtInt(slider, 'height'))
 
-        // //   console.log(max - start - getAtInt(slider, 'height'))
-        // console.log(max - start)
+          // //   console.log(max - start - getAtInt(slider, 'height'))
+          // console.log(max - start)
 
-        //   //   console.log('diff: ', diff)
-        //   //   console.log('avg: ', avg)
-        //   //   console.log(curr / (max-start))
+          //   //   console.log('diff: ', diff)
+          //   //   console.log('avg: ', avg)
+          //   //   console.log(curr / (max-start))
+          let height = root.getRootNode().host.shadowRoot.getElementById('box').scrollHeight - root.getRootNode().host.shadowRoot.getElementById('box').clientHeight
+        //   console.log(height)
 
-          var parentPos = root.getElementById('track').getBoundingClientRect()
+          var parentPos = root.shadowRoot.getElementById('track').getBoundingClientRect()
 
-          var childPos = root.getElementById('slider').getBoundingClientRect()
+          var childPos = root.shadowRoot.getElementById('slider').getBoundingClientRect()
 
           let x = childPos.top - parentPos.top
           let y = max - start
+          let percentage = (x / y).toFixed(2)
+          console.log('height: ', height)
+          console.log('percent: ', percentage)
+          console.log('scrollView: ', height * percentage )
 
-          console.log( (x/y)*100 )
+          //   console.log( (x/y)*100 )
 
           slider.style.top = slider.proposedNewPosY + 'px'
+          root.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height * percentage
         }
         slider.lastMousePosY = e.pageY
       }
@@ -109,7 +116,6 @@ export class ScrollBar extends HTMLElement {
 
     // console.log(relativePos)
 
-
     // up and down button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
       slider.style.top = track.offsetTop - slider.clientTop + 'px'
@@ -118,8 +124,10 @@ export class ScrollBar extends HTMLElement {
     this.shadowRoot.getElementById('down-btn').onclick = () => {
       slider.style.top = getAtInt(track, 'top') + getAtInt(track, 'height') - getAtInt(slider, 'height') + 'px'
       let height = this.getRootNode().host.shadowRoot.getElementById('box').scrollHeight
-      console.log(height)
-      this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
+    //   console.log(height)
+    //   this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = height
+    this.getRootNode().host.shadowRoot.getElementById('box').scrollTop = 2400
+
     }
 
     // box view position logic
