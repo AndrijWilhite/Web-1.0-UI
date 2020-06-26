@@ -1,0 +1,13 @@
+Scroll Bar:
+-scale adjust sizes
+-Make it look good
+-fix minor offset issues
+-create horizontal scroll bar
+-investigate 'sticky' slider
+
+Ideas:
+-Slow image loader
+
+
+General:
+-standardize code, vars etc
