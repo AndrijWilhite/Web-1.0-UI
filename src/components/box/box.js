@@ -14,7 +14,15 @@ export class Box extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.shadowRoot.getElementById('box').innerHTML = this.innerHTML
 
-    this.shadowRoot.querySelector('style').innerText += '#box {width:' + (this.getAttribute('width') || '300') + 'px;height:' + (this.getAttribute('height') || '500') + 'px;}'
+    let width = this.getAttribute('width')
+    let height = this.getAttribute('height')
+
+    this.shadowRoot.querySelector('style').innerText += '#box {width:' + (parseInt(width).isNaN ? 'auto' : (width + 'px')) + ';height:' + (parseInt(height).isNaN ? 'auto' : (height + 'px')) + ';}'
+
+    console.log('**********')
+    console.log(this.getAttribute('width'))
+    console.log(parseInt(this.getAttribute('width')))
+    // console.log(NaN)
 
     if (this.getAttribute('scrollable') === 'true') {
       let height = +getComputedStyle((this.shadowRoot.getElementById('box'))).borderTopWidth.slice(0, -2) * 2 + this.shadowRoot.getElementById('box').clientHeight
