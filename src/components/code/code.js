@@ -20,7 +20,7 @@ export class Code extends HTMLElement {
     this.shadowRoot.querySelector('wo-box').innerHTML = `<pre><code></code></pre>`
  
     this.shadowRoot.querySelector('wo-box').innerHTML += `<style>
-    #box{background-color: transparent !important; border:none !important;}
+    #box{background-color: transparent !important;}
     #grey{background:lightgray;}
     #white{bacground: white;}
     .line{width: 100%;}
