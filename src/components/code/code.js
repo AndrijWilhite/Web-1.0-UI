@@ -18,7 +18,6 @@ export class Code extends HTMLElement {
 
     this.shadowRoot.getElementById('container').innerHTML = '<wo-box height="' + (this.getAttribute('height') || 'auto') + '" width="' + (this.getAttribute('width') || 'auto') + '"></wo-box>'
     this.shadowRoot.querySelector('wo-box').innerHTML = `<pre><code></code></pre>`
- 
     this.shadowRoot.querySelector('wo-box').innerHTML += `<style>
     #box{background-color: transparent !important;}
     #grey{background:lightgray;}
