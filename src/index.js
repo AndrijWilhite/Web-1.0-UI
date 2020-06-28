@@ -10,6 +10,8 @@ import { Marquee } from './components/marquee/marquee.js'
 import { FlashBanner } from './components/flashBanner/flashBanner.js'
 import { Box } from './components/box/box.js'
 import { ScrollBar } from './components/scrollBar/scrollBar.js'
+import { SlowImage } from './components/slowImage/slowImage.js'
+
 
 window.customElements.define('user-card', UserCard)
 window.customElements.define('wo-btn', Button)
@@ -23,3 +25,4 @@ window.customElements.define('wo-marquee', Marquee)
 window.customElements.define('wo-flash', FlashBanner)
 window.customElements.define('wo-box', Box)
 window.customElements.define('wo-scrollbar', ScrollBar)
+window.customElements.define('wo-img', SlowImage)

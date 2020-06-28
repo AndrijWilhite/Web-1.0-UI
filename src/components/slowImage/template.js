@@ -4,35 +4,8 @@ let downArrow = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 
 template.innerHTML = `
 <style>
-button {
-    padding: 0px;
-    background-image: url(${downArrow});
-    background-repeat: no-repeat;
-    background-position: center;
-}
-button:focus {
-    outline: none;
-    box-shadow: none;
-}
-#up-btn{
-    -webkit-transform:rotate(180deg);
-}
-#slider {
-    background: grey;
-    position: absolute;
-}
-.scale{
-    height: 15px;
-    width: 15px;
-}
-
 </style>
-<div id="scrollBar" class='scale'>
-    <button id='up-btn' class='scale'></button>
-     <div id='track' class='scale'>
-        <div id='slider' class='scale'></div>
-     </div>
-    <button id='down-btn' class='scale'></button>
+<div id='container'>
 </div>
 `
 export default template
