@@ -4,8 +4,12 @@ let downArrow = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 
 template.innerHTML = `
 <style>
+#container{
+}
 </style>
+<div>
 <div id='container'>
+</div>
 </div>
 `
 export default template
