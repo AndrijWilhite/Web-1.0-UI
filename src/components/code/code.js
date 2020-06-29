@@ -14,7 +14,7 @@ export class Code extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
 
     this.shadowRoot.querySelector('h3').innerText = this.getAttribute('title')
-    const text = this.innerHTML.split('\n')
+    var text = this.innerHTML.split('\n')
 
     this.shadowRoot.getElementById('container').innerHTML = '<wo-box height="' + (this.getAttribute('height') || 'auto') + '" width="' + (this.getAttribute('width') || 'auto') + '"></wo-box>'
     this.shadowRoot.querySelector('wo-box').innerHTML = `<pre><code></code></pre>`
