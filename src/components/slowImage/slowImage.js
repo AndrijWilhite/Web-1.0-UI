@@ -15,20 +15,26 @@ export class SlowImage extends HTMLElement {
     // set the image
     let img = new Image()
     img.onload = () => {
-      //declarations
       let chunks = parseInt(root.getAttribute('chunks')) || 10
-      let speed = root.getAttribute('speed') || 10
       let imgHeight = root.shadowRoot.querySelector('img').height
       let imgWidth = root.shadowRoot.querySelector('img').width
       let chunkSize = imgHeight / chunks
-      let milli = (speed / chunks) * 1000
-
-
+      let milli = ((root.getAttribute('speed') || 10) / chunks) * 1000
 
       root.shadowRoot.querySelector('style').innerHTML += `
-      [id^="cover"]{height:${chunkSize}px;width:${imgWidth}px;z-index:2;background-color:${root.getAttribute('color') || 'white'};}
-      #mask{height:${imgHeight}px;width:${imgWidth}px;z-index:2;margin-left: -${imgWidth}px;}
-      img{visibility:visible !important;}
+      [id^="cover"] {
+        height:${chunkSize}px;
+        width:${imgWidth}px;
+        background-color:${root.getAttribute('color') || 'white'};
+      }
+      #mask {
+        height:${imgHeight}px;
+        width:${imgWidth}px;
+        margin-left:-${imgWidth}px;
+      }
+      img {
+        visibility:visible !important;
+      }
       `
       root.shadowRoot.getElementById('container').innerHTML += '<div id="mask"></div>'
 
@@ -49,9 +55,5 @@ export class SlowImage extends HTMLElement {
 
     img.src = this.getAttribute('src')
     this.shadowRoot.getElementById('container').appendChild(img)
-    this.shadowRoot.querySelector('style').innerHTML += `
-    img{z-index:1;visibility:hidden}
-    #mask{display: inline-block;}
-    `
   }
 }
