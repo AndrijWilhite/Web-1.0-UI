@@ -37,7 +37,6 @@ export class SlowImage extends HTMLElement {
       }
       `
       root.shadowRoot.getElementById('container').innerHTML += '<div id="mask"></div>'
-      // const oldStyle = root.shadowRoot.querySelector('style')
       for (let i = 1; i <= chunks; i++) {
         root.shadowRoot.getElementById('mask').innerHTML += `<div id="cover${i}"></div>`
       }
