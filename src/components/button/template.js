@@ -36,7 +36,6 @@ button {
     color: black;
     text-decoration: none;
 }
-
 button:active {
     padding: 2px 7px 3px 9px;
     border: 1px solid #73A7C4;
@@ -47,8 +46,6 @@ button:active {
     background: -moz-linear-gradient(top, #E5F4FC 0%, #C4E5F6 50%, #98D1EF 51%, #68B3DB 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0,#E5F4FC), color-stop(0.5,#C4E5F6),color-stop(0.51,#98D1EF),color-stop(1,#68B3DB));
 }
-
-
 button:hover {
     border: 1px solid #ECF7FD;
     -moz-box-shadow: 0 0 0 1px #3C7FB1;
