@@ -27,5 +27,3 @@ window.customElements.define('wo-img', SlowImage)
 window.customElements.define('wo-page', ShowPage)
 window.customElements.define('wo-scrollbar', Scrollable)
 window.customElements.define('wo-big', Big)
-
-
