@@ -17,6 +17,15 @@
     </head>
     <body>
         <div>
+            <div>
+                <script>
+                    //takes a num for the page number
+                    function toTestPage(num){
+                        location.href = window.location.href + 'page' + num + '.html'
+                    }
+                </script>
+                <button onclick="toTestPage(2);">To Test Page</button>
+            </div>
             <h3>Slow Image</h3>
             <div>
                 <wo-img chunks="20" speed="5" color="white" src="./src/components/slowImage/test.png" alt='old computer'></wo-img>
@@ -132,6 +141,14 @@
                 <wo-page></wo-page>
                 <wo-code title='wo-page example'>
                     <wo-page></wo-page>
+                </wo-code>
+            </div>
+            <div>
+                <h3>Link To Us(you)</h3>
+                <wo-linkus></wo-linkus>
+                <wo-code title='wo-linkus example'>
+                    <wo-linkus width='500' height='300' lc='green' rc='blue' main='true'></wo-linkus>
+                    <wo-linkus callout='Want some Cheese?' msg='Cheese!!!'></wo-linkus>
                 </wo-code>
             </div>
         </div>
