@@ -37,7 +37,7 @@ export class SlowImage extends HTMLElement {
       }
       `
       root.shadowRoot.getElementById('container').innerHTML += '<div id="mask"></div>'
-
+      // const oldStyle = root.shadowRoot.querySelector('style')
       for (let i = 1; i <= chunks; i++) {
         root.shadowRoot.getElementById('mask').innerHTML += `<div id="cover${i}"></div>`
       }
@@ -46,9 +46,13 @@ export class SlowImage extends HTMLElement {
       var intervalId = setInterval(function () {
         if (i === chunks) {
           clearInterval(intervalId)
+
+          // covers the tracks of the image being displayed slowly
           root.shadowRoot.getElementById('mask').remove()
+          root.shadowRoot.querySelector('style').innerHTML = ''
+        } else {
+          root.shadowRoot.querySelector('style').innerHTML += `#cover${i}{visibility:hidden;}`
         }
-        root.shadowRoot.querySelector('style').innerHTML += `#cover${i}{visibility:hidden;}`
         i++
       }, milli)
     }
