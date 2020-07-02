@@ -20,7 +20,7 @@ template.innerHTML = `
 .innerBox{
     display: flex;
     align-items: center;
-    overflow-wrap: anywhere;;
+    overflow-wrap: anywhere;
 }
 #left{
     justify-content: center;

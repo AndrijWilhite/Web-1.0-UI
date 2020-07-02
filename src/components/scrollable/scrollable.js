@@ -13,7 +13,7 @@ export class Scrollable extends HTMLElement {
     this.shadowRoot.getElementById('content').innerHTML = this.innerHTML
 
     const scale = 15
-
+ 
     // set the scale for elements
     this.shadowRoot.querySelector('style').innerText += `
     #container{width:${this.getAttribute('width')}px; height:${this.getAttribute('height')}px;}
@@ -22,18 +22,21 @@ export class Scrollable extends HTMLElement {
     #scrollBar {height:${this.getAttribute('height')}px;}
     #track {height:${(this.getAttribute('height') - (scale * 2))}px;}
     `
-
+    const sliderHeightSet = this.shadowRoot.getElementById('track').clientHeight * 0.1
+    this.shadowRoot.querySelector('style').innerText += `
+    #slider{width:${scale}px;height:${sliderHeightSet}px;}
+    `
     // declarations
     const root = this
     var slider = this.shadowRoot.getElementById('slider')
     var track = this.shadowRoot.getElementById('track')
-    let max = track.offsetTop + track.clientHeight - slider.clientHeight
+    let max = track.offsetTop + parseInt(getComputedStyle(track).height, 10) - parseInt(getComputedStyle(slider).height, 10)
     const maxHeight = root.shadowRoot.getElementById('content').scrollHeight - root.shadowRoot.getElementById('content').clientHeight
 
     document.mouseState = 1
     slider.mouseState = 1
     slider.lastMousePosY = null
-    slider.style.top = track.offsetTop - slider.clientTop + 'px'
+    slider.style.top = track.offsetTop + 'px'
     track.style.top = track.offsetTop + 'px'
     slider.proposedNewPosY = parseInt(slider.style.top, 10)
 
@@ -70,11 +73,11 @@ export class Scrollable extends HTMLElement {
 
     // up and down button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
-      slider.style.top = track.offsetTop - slider.clientTop + 'px'
+      slider.style.top = track.style.top
       this.shadowRoot.getElementById('content').scrollTop = 0
     }
     this.shadowRoot.getElementById('down-btn').onclick = () => {
-      slider.style.top = track.offsetTop + track.clientHeight - slider.clientHeight + 'px'
+      slider.style.top = max + 'px'
       this.shadowRoot.getElementById('content').scrollTop = maxHeight
     }
   }
