@@ -14,6 +14,7 @@ import { ShowPage } from './components/showPage/showPage.js'
 import { LinkToUs } from './components/linkToUs/linkToUs.js'
 import { BackButton } from './components/backButton/backButton.js'
 // import { Scrollable } from './components/scrollable/test.js'
+import { Blink } from './components/blink/blink.js'
 
 window.customElements.define('user-card', UserCard)
 window.customElements.define('wo-btn', Button)
@@ -26,6 +27,7 @@ window.customElements.define('wo-marquee', Marquee)
 window.customElements.define('wo-flash', FlashBanner)
 window.customElements.define('wo-img', SlowImage)
 window.customElements.define('wo-backbtn', BackButton)
+window.customElements.define('wo-blink', Blink)
 
 // better name for these?
 window.customElements.define('wo-page', ShowPage)
