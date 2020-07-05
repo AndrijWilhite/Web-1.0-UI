@@ -13,6 +13,7 @@ import { Scrollable } from './components/scrollable/scrollable.js'
 import { ShowPage } from './components/showPage/showPage.js'
 import { LinkToUs } from './components/linkToUs/linkToUs.js'
 import { BackButton } from './components/backButton/backButton.js'
+// import { Scrollable } from './components/scrollable/test.js'
 
 window.customElements.define('user-card', UserCard)
 window.customElements.define('wo-btn', Button)

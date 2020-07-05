@@ -10,7 +10,13 @@ button {
     background: #BDBDBD;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: 75%;
+    border-width:2px;
+    box-sizing: border-box;
+    border-bottom-color: #F2F2F2;
+    border-right-color: #F2F2F2;
+    border-top-color: #EEEEEE;
+    border-left-color: #EEEEEE;
 }
 #up-btn{
     background-image: url(${upArrow});
@@ -28,7 +34,6 @@ button:focus {
     box-sizing: border-box;
     border-width: 2px;
     border-style: outset;
-    border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
 }
 #content {
     overflow: hidden;
@@ -52,12 +57,13 @@ button:focus {
     background-image: linear-gradient(45deg, #F2F2F2 50%, #C8C8C8 50%, #C8C8C8 75%, #F2F2F2 75%, #F2F2F2),
     linear-gradient(45deg, #F2F2F2 50%, #C8C8C8 50%, #C8C8C8 75%, #F2F2F2 75%, #F2F2F2);
 }
+
 </style>
 <div id="container">
     <div id="content"></div>
     <div id="scrollBar">
     <button id='up-btn' class='scale'></button>
-     <div id='track' class='scale'>
+    <div id='track' class='scale'>
         <div id='slider'></div>
      </div>
     <button id='down-btn' class='scale'></button>

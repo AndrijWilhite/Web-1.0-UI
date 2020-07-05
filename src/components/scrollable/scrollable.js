@@ -3,6 +3,7 @@ import template from './template.js'
 /**
  * @param height : sets the height of the scroll box
  * @param width : sets the width of the scroll box
+ * @param bottom : bool if passed aranges to buttons to the bottom of the scroll bar
  * @BUG slider is sometimes 'sticky'
  */
 export class Scrollable extends HTMLElement {
@@ -13,7 +14,7 @@ export class Scrollable extends HTMLElement {
     this.shadowRoot.getElementById('content').innerHTML = this.innerHTML
 
     const scale = 15
- 
+
     // set the scale for elements
     this.shadowRoot.querySelector('style').innerText += `
     #container{width:${this.getAttribute('width')}px; height:${this.getAttribute('height')}px;}
@@ -22,10 +23,20 @@ export class Scrollable extends HTMLElement {
     #scrollBar {height:${this.getAttribute('height')}px;}
     #track {height:${(this.getAttribute('height') - (scale * 2))}px;}
     `
-    const sliderHeightSet = this.shadowRoot.getElementById('track').clientHeight * 0.1
+
+    // sets the slider height to 10% of track, defaults to 15px if its smaller
+    const sliderHeightSet = (this.shadowRoot.getElementById('track').clientHeight * 0.1) > 15 ? (this.shadowRoot.getElementById('track').clientHeight * 0.1) : 15
     this.shadowRoot.querySelector('style').innerText += `
     #slider{width:${scale}px;height:${sliderHeightSet}px;}
     `
+    if (this.getAttribute('bottom') !== null) {
+      this.shadowRoot.querySelector('style').innerText += `
+        #scrollBar {display: flex !important;flex-flow: column !important;margin-top: 3px !important;}
+        #track{order: 1 !important; margin-top: -3px !important;}
+        button{order: 2!important;}
+        #up-btn {margin-top: 1px !important;}
+    `
+    }
     // declarations
     const root = this
     var slider = this.shadowRoot.getElementById('slider')
@@ -40,6 +51,7 @@ export class Scrollable extends HTMLElement {
     track.style.top = track.offsetTop + 'px'
     slider.proposedNewPosY = parseInt(slider.style.top, 10)
 
+    // calculates the percentage for using against the scroll height to set the view
     var calcPercentage = function () {
       return ((root.shadowRoot.getElementById('slider').getBoundingClientRect().top - root.shadowRoot.getElementById('track').getBoundingClientRect().top) / (max - track.offsetTop)).toFixed(2)
     }
@@ -56,6 +68,7 @@ export class Scrollable extends HTMLElement {
       document.mouseState = 1
     }
 
+    // TODO: this may the source of sticky issue, should find a better way
     slider.onmousemove = function (e) {
       if ((document.mouseState === 0) && (slider.mouseState === 0)) {
         slider.proposedNewPosY = parseInt(slider.style.top, 10) + e.pageY - slider.lastMousePosY
@@ -71,11 +84,13 @@ export class Scrollable extends HTMLElement {
       }
     }
 
-    // up and down button logic
+    // up button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
       slider.style.top = track.style.top
       this.shadowRoot.getElementById('content').scrollTop = 0
     }
+
+    // down button logic
     this.shadowRoot.getElementById('down-btn').onclick = () => {
       slider.style.top = max + 'px'
       this.shadowRoot.getElementById('content').scrollTop = maxHeight
