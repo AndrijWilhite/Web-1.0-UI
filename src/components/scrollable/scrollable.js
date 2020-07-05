@@ -84,6 +84,28 @@ export class Scrollable extends HTMLElement {
       }
     }
 
+    track.onclick = function (e) {
+      if ((e.pageY < (slider.lastMousePosY + (sliderHeightSet / 2))) && (e.pageY > (slider.lastMousePosY - (sliderHeightSet / 2)))) {
+        // do nothing, this is to check of the user clicked within the slider
+      } else {
+        var yContain = e.clientY - e.target.getBoundingClientRect().top
+        if (yContain > max) {
+          console.log(1)
+          slider.style.top = max + 'px'
+          root.shadowRoot.getElementById('content').scrollTop = maxHeight * calcPercentage()
+        } else if (yContain < (sliderHeightSet / 2)) {
+          console.log(2)
+          slider.style.top = track.style.top
+          root.shadowRoot.getElementById('content').scrollTop = 0
+        } else {
+          console.log(3)
+          slider.style.top = e.offsetY + 'px'
+          root.shadowRoot.getElementById('content').scrollTop = maxHeight * calcPercentage()
+        }
+        slider.lastMousePosY = e.pageY
+      }
+    }
+
     // up button logic
     this.shadowRoot.getElementById('up-btn').onclick = () => {
       slider.style.top = track.style.top
