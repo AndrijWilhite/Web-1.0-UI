@@ -19,7 +19,7 @@ export class LinkToUs extends HTMLElement {
     const height = this.getAttribute('height') || '100'
     let location
 
-    if (this.getAttribute('main') && this.getAttribute('main').toLowerCase() === 'true') {
+    if (this.getAttribute('main') !== null) {
       location = window.location.hostname
     } else {
       location = window.location.href

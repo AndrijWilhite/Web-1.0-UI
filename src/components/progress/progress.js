@@ -17,7 +17,7 @@ export class Progress extends HTMLElement {
     this.shadowRoot.querySelector('progress').setAttribute('max', this.getAttribute('max'))
     this.shadowRoot.querySelector('h4').innerText = this.getAttribute('title')
 
-    if (this.getAttribute('showPercent')) {
+    if (this.getAttribute('showPercent') !== null) {
       this.shadowRoot.querySelector('#textDisplay').innerText = this.getAttribute('value') + ' / ' + this.getAttribute('max')
     }
   }
