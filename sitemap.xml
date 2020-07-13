@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/page3.html</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/page4.html</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Cool/</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Other/</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Cool/page7.html</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Cool/page8.html</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Other/page5.html</loc>
+  </url>
+  <url>
+    <loc>http://127.0.0.1:8080/testPages/Other/page6.html</loc>
+  </url>
+</urlset>
