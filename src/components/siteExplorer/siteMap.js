@@ -46,12 +46,12 @@ const siteMap = {
           'name': 'HELLO',
           'sub': [
             {
-              'name': 'Page 5',
-              'src': 'testPages/Other/HELLO/page5.html'
+              'name': 'Page 9',
+              'src': 'testPages/Other/HELLO/page9.html'
             },
             {
-              'name': 'Page 6',
-              'src': 'testPages/Other/HELLO/page6.html'
+              'name': 'Page 10',
+              'src': 'testPages/Other/HELLO/page10.html'
             }
           ]
         }
@@ -60,18 +60,5 @@ const siteMap = {
 
   ]
 }
-
-// const siteMap = [
-//   'index.html',
-//   'page2.html',
-//   'testPages/page3.html',
-//   'testPages/page4.html',
-//   'testPages/Cool/page7.html',
-//   'testPages/Cool/page8.html',
-//   'testPages/Other/page5.html',
-//   'testPages/Other/page6.html',
-//   'testPages/Other/HELLO/page9.html',
-//   'testPages/Other/HELLO/page10.html'
-// ]
 
 export default siteMap

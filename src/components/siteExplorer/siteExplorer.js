@@ -31,32 +31,69 @@ export class SiteExplorer extends HTMLElement {
             element.classList.add('hidden')
           }
         }
+
+        if (element.nodeName === 'IMG') {
+          console.log(element.id)
+          if (element.id === 'closedFolder') {
+            element.id = 'openFolder'
+          } else {
+            element.id = 'closedFolder'
+          }
+        }
       })
     }
 
     function buildTree (key, parent) {
       if (key.sub) {
-        root.shadowRoot.getElementById(parent).innerHTML += '<div id="wrapper" class="hidden test" ><button id="' + key.name + 'Btn" style="display:inline-flex"></button><div id="' + key.name + '">' + key.name + '</div></div>'
+        root.shadowRoot.getElementById(parent).innerHTML += `
+        <div id="wrapper" class="hidden" >
+        <button id="${key.name}Btn" class="plusIcon" style="display:flex"></button>
+        <div id="${key.name}">
+        <img id="closedFolder" align="absbottom"></img>${key.name}</div>
+        </div>`
 
         key.sub.forEach(item => {
           buildTree(item, key.name)
         })
       } else {
-        root.shadowRoot.getElementById(parent).innerHTML += '<div class="hidden"><div class="file"></div><div id="' + key.name + '" >' + key.name + '</div></div>'
+        root.shadowRoot.getElementById(parent).innerHTML += `
+        <div class="hidden" style="display:flex">
+        <img id="line" align="absbottom"></img>
+        <div  class="file"></div>
+        <a href="${key.src}" id="${key.name}" >${key.name}</a>
+        </div>`
       }
     }
 
-    Object.keys(menu).forEach(parent => {
-      root.shadowRoot.getElementById('container').innerHTML += '<div id="wrapper"><button id="' + parent + 'Btn"></button><div id="' + parent + '">' + parent + '</div></div>'
+    Object.keys(menu).forEach((parent, i) => {
+      root.shadowRoot.getElementById('container').innerHTML += `
+    <div id="wrapper">
+      <button id="${parent}Btn" class="plusIcon"></button>
+      <div  id="${parent}">
+          <img id="closedFolder" align="absbottom"></img>${parent}</div>
+    </div>`
+
+      if (Object.keys(menu).length === i + 1) {
+        this.shadowRoot.getElementById(parent + 'Btn').className = 'plusBottom'
+      }
 
       menu[parent].forEach(item => {
         buildTree(item, parent)
       })
     })
 
+    const iconClass = {
+      'plusIcon': 'minusIcon',
+      'minusIcon': 'plusIcon',
+      'plusBottom': 'minusBottom',
+      'minusBottom': 'plusBottom'
+    }
+
     this.shadowRoot.addEventListener('click', (e) => {
       if (e.target.nodeName === 'BUTTON') {
         toggle(e.target.id.slice(0, -3))
+
+        e.target.className = iconClass[e.target.className]
       }
     })
   }
