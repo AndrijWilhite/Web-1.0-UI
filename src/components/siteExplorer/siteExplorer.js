@@ -33,7 +33,6 @@ export class SiteExplorer extends HTMLElement {
         }
 
         if (element.nodeName === 'IMG') {
-          console.log(element.id)
           if (element.id === 'closedFolder') {
             element.id = 'openFolder'
           } else {
@@ -43,22 +42,26 @@ export class SiteExplorer extends HTMLElement {
       })
     }
 
-    function buildTree (key, parent) {
+    function buildTree (key, parent, last) {
       if (key.sub) {
         root.shadowRoot.getElementById(parent).innerHTML += `
         <div id="wrapper" class="hidden" >
-        <button id="${key.name}Btn" class="plusIcon" style="display:flex"></button>
+        <button id="${key.name}Btn" class="${last ? 'plusBottom' : 'plusIcon'}" style="display:flex"></button>
         <div id="${key.name}">
         <img id="closedFolder" align="absbottom"></img>${key.name}</div>
         </div>`
 
-        key.sub.forEach(item => {
-          buildTree(item, key.name)
+        key.sub.forEach((item, i) => {
+          if (key.sub.length === i + 1) {
+            buildTree(item, key.name, true)
+          } else {
+            buildTree(item, key.name)
+          }
         })
       } else {
         root.shadowRoot.getElementById(parent).innerHTML += `
         <div class="hidden" style="display:flex">
-        <img id="line" align="absbottom"></img>
+        <img id="${last ? 'lineBottom' : 'line'}" align="absbottom"></img>
         <div  class="file"></div>
         <a href="${key.src}" id="${key.name}" >${key.name}</a>
         </div>`
@@ -67,18 +70,19 @@ export class SiteExplorer extends HTMLElement {
 
     Object.keys(menu).forEach((parent, i) => {
       root.shadowRoot.getElementById('container').innerHTML += `
-    <div id="wrapper">
-      <button id="${parent}Btn" class="plusIcon"></button>
-      <div  id="${parent}">
-          <img id="closedFolder" align="absbottom"></img>${parent}</div>
-    </div>`
+        <div id="wrapper">
+        <button id="${parent}Btn" class="${(Object.keys(menu).length === i + 1) ? 'plusBottom' : 'plusIcon'}"></button>
+        <div  id="${parent}">
+            <img id="closedFolder" align="absbottom"></img>${parent}</div>
+        </div>
+        `
 
-      if (Object.keys(menu).length === i + 1) {
-        this.shadowRoot.getElementById(parent + 'Btn').className = 'plusBottom'
-      }
-
-      menu[parent].forEach(item => {
-        buildTree(item, parent)
+      menu[parent].forEach((item, i) => {
+        if (menu[parent].length === i + 1) {
+          buildTree(item, parent, true)
+        } else {
+          buildTree(item, parent)
+        }
       })
     })
 
@@ -92,7 +96,6 @@ export class SiteExplorer extends HTMLElement {
     this.shadowRoot.addEventListener('click', (e) => {
       if (e.target.nodeName === 'BUTTON') {
         toggle(e.target.id.slice(0, -3))
-
         e.target.className = iconClass[e.target.className]
       }
     })

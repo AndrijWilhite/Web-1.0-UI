@@ -1,25 +1,5 @@
 const template = document.createElement('template')
 
-const icons = []
-icons[0] = new Image()
-icons[0].src = 'src/components/siteExplorer/icons/plus.gif'
-icons[1] = new Image()
-icons[1].src = 'src/components/siteExplorer/icons/plusbottom.gif'
-icons[2] = new Image()
-icons[2].src = 'src/components/siteExplorer/icons/minus.gif'
-icons[3] = new Image()
-icons[3].src = 'src/components/siteExplorer/icons/minusbottom.gif'
-icons[4] = new Image()
-icons[4].src = 'src/components/siteExplorer/icons/folder.gif'
-icons[5] = new Image()
-icons[5].src = 'src/components/siteExplorer/icons/folderopen.gif'
-icons[6] = new Image()
-icons[6].src = 'src/components/siteExplorer/icons/page.gif'
-icons[7] = new Image()
-icons[7].src = 'src/components/siteExplorer/icons/joinbottom.gif'
-icons[8] = new Image()
-icons[8].src = 'src/components/siteExplorer/icons/base.gif'
-
 template.innerHTML = `
 <style>
 .hidden{
@@ -29,7 +9,7 @@ button {
     border: none;
     background-repeat: no-repeat;
     background-position: center;
-    width:15px;
+    width:20px;
     height:15px;
 }
 button:focus {
@@ -41,37 +21,53 @@ button:focus {
     width: 100px;
 }
 .file{
-    background: url('${icons[6].src}');
+    background: url('src/components/siteExplorer/icons/page.gif');
     border: none;
     background-repeat: no-repeat;
     background-position: center;
     width:20px;
-    height:15px; 
+    height:15px;
 }
-
 #closedFolder {
-    content: url('${icons[4].src}');
+    content: url('src/components/siteExplorer/icons/folder.gif');
 }
-
 #openFolder {
-    content:  url('${icons[5].src}');
+    content:  url('src/components/siteExplorer/icons/folderopen.gif');
 }
 
 #line {
-    content: url('${icons[7].src}')
+    content: url('src/components/siteExplorer/icons/joinbottom.gif')
+}
+#lineBottom {
+    content: url('src/components/siteExplorer/icons/join.gif');
 }
 
 .plusIcon {
-    background: url('${icons[0].src}');
-}
-.minusIcon {
-    background: url('${icons[2].src}');
+    background: url('src/components/siteExplorer/icons/plus.gif');
 }
 .plusBottom {
-    background: url('${icons[1].src}');
+    background: url('src/components/siteExplorer/icons/plusbottom.gif');
+}
+
+.minusIcon {
+    background: url('src/components/siteExplorer/icons/minus.gif');
 }
 .minusBottom {
-    background: url('${icons[3].src}');
+    background: url('src/components/siteExplorer/icons/minusbottom.gif');
+}
+
+a{
+    overflow: hidden;
+    white-space: nowrap;
+    color: black;
+    text-decoration: none;
+}
+#container{
+    font-size: 14px;
+}
+#fillerTop{
+    background:url('src/components/siteExplorer/icons/line.gif');
+    z-index: 3;
 }
 </style>
 <div id='container'>
