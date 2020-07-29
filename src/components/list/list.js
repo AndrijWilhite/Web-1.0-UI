@@ -27,14 +27,8 @@ export class List extends HTMLElement {
     this.shadowRoot.querySelector('style').innerText += listType + ' {list-style-type:' + this.getAttribute('bullet') + ';}'
 
     var items = this.getAttribute('items')
-    if (!Array.isArray(items)) {
-      JSON.parse(items).forEach(item => {
-        this.shadowRoot.querySelector(listType).innerHTML += '<li>' + item.data + '</li>'
-      })
-    } else {
-      items.foreach(item => {
-        this.shadowRoot.querySelector(listType).innerHTML += '<li>' + item + '</li>'
-      })
-    }
+    JSON.parse(items).forEach(item => {
+      this.shadowRoot.querySelector(listType).innerHTML += '<li>' + item.data + '</li>'
+    })
   }
 }

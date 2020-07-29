@@ -13,7 +13,6 @@ import { Scrollable } from './components/scrollable/scrollable.js'
 import { ShowPage } from './components/showPage/showPage.js'
 import { LinkToUs } from './components/linkToUs/linkToUs.js'
 import { BackButton } from './components/backButton/backButton.js'
-// import { Scrollable } from './components/scrollable/test.js'
 import { Blink } from './components/blink/blink.js'
 import { SiteExplorer } from './components/siteExplorer/siteExplorer.js'
 
